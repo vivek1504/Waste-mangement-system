@@ -1,10 +1,14 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+
+import './index.css'
+import Tab from './components/Tab/Tab'
+import UserPage from './pages/UserPage'
+
+
 
 function App() {
-  return <div></div>
+  return <div>
+    <UserPage/>
+  </div>
 }
 
 export default App
