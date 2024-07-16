@@ -1,4 +1,3 @@
-// FileUploadComponent.js
 import React, { useRef, useState } from 'react';
 
 const FileUploadComponent = () => {
@@ -6,7 +5,8 @@ const FileUploadComponent = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [uploadStatus, setUploadStatus] = useState('');
 
-  const handleFileInputClick = () => {
+  const handleFileInputClick = (event) => {
+    event.preventDefault();
     fileInputRef.current.click();
   };
 
@@ -26,6 +26,7 @@ const FileUploadComponent = () => {
           setUploadStatus('File upload failed.');
         }
       } catch (error) {
+        console.error(error);
         setUploadStatus('File upload failed.');
       }
     } else {
@@ -37,7 +38,7 @@ const FileUploadComponent = () => {
     const formData = new FormData();
     formData.append('file', file);
 
-    return fetch('https://your-backend-endpoint/upload', {
+    return fetch('http://localhost:3000/upload', {
       method: 'POST',
       body: formData,
     });
@@ -53,7 +54,7 @@ const FileUploadComponent = () => {
               <label className="flex flex-col rounded-lg border-4 border-dashed w-full h-60 p-10 group text-center">
                 <div className="h-full w-full text-center flex flex-col items-center justify-center">
                   <div className="flex flex-auto max-h-48 w-2/5 mx-auto -mt-10">
-                    <img className="has-mask h-36 object-center" src="https://img.freepik.com/free-vector/image-upload-concept-landing-page_52683-27130.jpg?size=338&ext=jpg" alt="freepik image" />
+                    <img className="has-mask h-36 object-center" src="https://img.freepik.com/free-vector/image-upload-concept-landing-page_52683-27130.jpg?size=338&ext=jpg" alt="Upload" />
                   </div>
                   <p className="pointer-none text-gray-500"><span className="text-sm">Drag and drop</span> files here <br /> or <a href="#" onClick={handleFileInputClick} className="text-blue-600 hover:underline">select a file</a> from your computer</p>
                 </div>
