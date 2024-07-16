@@ -9,12 +9,7 @@ import UserLogin from './pages/UserLogin'
 function App() {
   return (
     <>
-      <Navbar />
-      {/* <Card /> */}
-      <Cards />
-      <Camera />
-      <DriverCard />
-      <UserLogin />
+      <Camera></Camera>
     </>
   )
 }
