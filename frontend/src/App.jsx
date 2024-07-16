@@ -1,10 +1,22 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import Camera from './components/Camera'
+import Navbar from './components/Navbar'
+import Card from './pages/Card'
+import Cards from './pages/Cards'
+import DriverCard from './pages/DriverCard'
+import UserLogin from './pages/UserLogin'
 
 function App() {
-  return <div></div>
+  return (
+    <>
+      <Navbar />
+      {/* <Card /> */}
+      <Cards />
+      <Camera />
+      <DriverCard />
+      <UserLogin />
+    </>
+  )
 }
 
 export default App
