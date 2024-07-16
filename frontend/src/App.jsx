@@ -4,12 +4,17 @@ import Navbar from './components/Navbar'
 import Card from './pages/Card'
 import Cards from './pages/Cards'
 import DriverCard from './pages/DriverCard'
-import UserLogin from './pages/UserLogin'
+import SignIn from './pages/SignIn'
 
 function App() {
   return (
     <>
-      <Camera></Camera>
+      <Navbar />
+      {/* <Card /> */}
+      <Cards />
+      <Camera />
+      <DriverCard />
+      <UserLogin />
     </>
   )
 }
