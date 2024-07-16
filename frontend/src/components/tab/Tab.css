@@ -1,0 +1,46 @@
+.tab-container{
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+    justify-content:center;
+    height:100vh;
+}
+
+.tabs{
+    margin-bottom:20px;
+}
+
+button{
+    background-color: transparent;
+    border:none;
+    padding:10px 20px;
+    margin:0 5px;
+    cursor:pointer;
+    font-size:18px;
+    color:black;
+}
+
+.active-tab{
+    color:goldenrod;
+}
+
+.card-container{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.card{
+    width:1000px;
+    height:500px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    padding:20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+@media screen and (max-width:600px){
+    .card{
+        width:100%;
+    }
+}
