@@ -7,8 +7,6 @@ import { userHandler } from "./routes/userRoutes";
 import { cleanerHandler } from "./routes/cleanerRoutes";
 import mime from 'mime-types'
 import { v2 as cloudinary } from 'cloudinary';
-import fetch from "node-fetch";
-
 
 const app = express();
 app.use(express.json());
@@ -61,7 +59,7 @@ const storage = multer.diskStorage({
 
   app.get("/address", async (req, res) => {
     const { lat, lon } = req.body;
-    const url = `https://api.opencagedata.com/geocode/v1/json?q=${lat}+${lon}&key=${api_key}`;
+    const url = `https://api.geoapify.com/v1/geocode/reverse?lat=${lat}&lon=${lon}&apiKey=6257fd3e07dd4faeb12b794a326ef911 `;
     const response = await fetch(url);
     const data = await response.json();
     res.json(data);
