@@ -1,0 +1,56 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User{
+  id              Int           @id @default(autoincrement())
+  username        String        @unique
+  email           String        @unique
+  password        String
+  complaints      Complaint[]
+}
+
+model Cleaner{
+  id             Int           @id @default(autoincrement())
+  username       String        @unique
+  email          String        @unique
+  password       String
+  complaints     Complaint[]
+}
+
+model Complaint{
+  id             Int          @id @default(autoincrement())
+  address        Address?            
+  beforeImage    String
+  afterImage     String?
+  raisedBy       User         @relation(fields:[raiserId],references: [id])
+  raiserId       Int
+  cleanedBy     Cleaner?      @relation(fields: [cleanerId],references: [id])
+  cleanerId      Int?    
+  status         Status    
+  createdOn      DateTime     @default(now())
+}
+
+model Address{
+  id             Int          @id @default(autoincrement())
+  flat           String
+  area           String 
+  pincode        Int
+  city           String
+  state          String
+  complaintId    Int?         @unique
+  complaint      Complaint?    @relation(fields: [complaintId],references: [id])
+}
+
+enum Status{
+  Raised
+  Processing
+  underEvaluation
+  Rejected
+  Completed
+}
