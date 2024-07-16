@@ -3,13 +3,13 @@ import React from 'react';
 const SignInComponent = () => {
   return (
         <>
-        <div className='flex items-center justify-center pt-5'>
-            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg ">
-                User SignIn
-            </button>
-            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg">
-                Driver SignIn
-            </button>
+        <div className='mr-48 ml-48 flex items-center justify-center pt-5 m-5'>
+              <span className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg mr-8 ml-5 ">
+              <button >User SignIn</button>
+              </span>
+              <span className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg">
+              <button >Driver SignIn</button>
+              </span>
         </div>
       <div className="flex flex-col items-center justify-center px-6  mx-auto  lg:py-0">
         
@@ -20,12 +20,12 @@ const SignInComponent = () => {
             </h1>
             <form className="space-y-4 md:space-y-6" action="#">
             <div>
-                <label htmlFor="Name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Enter The Name</label>
+                <label htmlFor="Name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Enter Your Name</label>
                 <input 
                   type="text" 
                   name="text" 
                   id="Name" 
-                  placeholder="Enter The Name" 
+                  placeholder="Enter Your Name" 
                   className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
                   required 
                 />
@@ -65,10 +65,10 @@ const SignInComponent = () => {
                     />
                   </div>
                   <div className="ml-3 text-sm">
-                    <label htmlFor="remember" className="text-gray-500 dark:text-gray-300">Remember me</label>
+                    <label htmlFor="remember" className="text-gray-500 dark:text-white">Remember me</label>
                   </div>
                 </div>
-                <a href="#" className="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500">Forgot password?</a>
+                <a href="#" className="text-sm font-medium text-primary-600 hover:underline text-white">Forgot password?</a>
               </div>
               <button 
                 type="submit" 
