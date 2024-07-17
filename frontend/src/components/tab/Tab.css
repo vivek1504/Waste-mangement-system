@@ -3,6 +3,7 @@
     flex-direction: column;
     align-items:center;
     justify-content:center;
+    background-color: white;
     height:100vh;
 }
 
@@ -28,6 +29,7 @@ button{
     display:flex;
     align-items:center;
     justify-content:center;
+    
 }
 
 .card{

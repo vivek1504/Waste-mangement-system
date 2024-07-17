@@ -1,11 +1,10 @@
 import React, {useRef} from 'react'
-import './Checking.css'
+import './ReAssignComplaint.css'
 import { CiCircleRemove } from "react-icons/ci";
 import { IoSwapHorizontal } from "react-icons/io5";
-import { BsPatchCheck } from "react-icons/bs";
-import { RxCrossCircled } from "react-icons/rx";
+import { MdAssignmentAdd } from "react-icons/md";
 
-const Checking = ({onClose}) => {
+const ReAssignComplaint = ({onClose}) => {
     const modalRef = useRef();
   const closeModal = (e) =>{
     if(modalRef.current === e.target){
@@ -17,22 +16,19 @@ const Checking = ({onClose}) => {
       <div ref={modalRef} onClick={closeModal} className='fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm flex justify-center items-center'>
           <div className='mt-10 flex flex-col gap-5 text-black'>
             <button onClick={onClose} className='place-serif-end '><CiCircleRemove size={30}/></button>
-              <div class="card-container rounded-xl px-20 py-10 flex flex-col gap-5 items-center mx-4">
-                <div class="card">
-                  <div class='upper-card gap-5 mt-10'>
+              <div class="card-container2 rounded-xl px-20 py-10 flex flex-col gap-5 items-center mx-4">
+                <div class="card2">
+                  <div class='upper-card2 gap-5 mt-10'>
                     <img src="https://api.time.com/wp-content/uploads/2021/03/trash-pandemic-covid-19-01.jpg"/>
                     <IoSwapHorizontal size={20}/>
                     <img src="https://st3.depositphotos.com/1000151/17469/i/950/depositphotos_174690294-stock-photo-cleaning-street-in-singapore.jpg" />
                   </div>
-                  <div class="card-content">
-                    <h3>Address</h3>
-                    <p>4001 Dwivedi Orchard, Yakima, Himachal Pradesh 785 138, India</p>
+                  <div class="card-content2">
+                    <h3>Reason</h3>
+                    <p>Places is not same.</p>
                   </div>
-                  <div class='icon gap-36'>
-                  <BsPatchCheck size={50}/>
-                  <RxCrossCircled size={50}/>
+                  <button class="px-3 py-1.5 flex gap-2 items-center ml-80 rounded-xl outline outline-2 mt-5 ml-4"><MdAssignmentAdd/> Assign Again</button>
                   </div>
-                </div>
               </div>
           </div>
         </div>
@@ -40,4 +36,4 @@ const Checking = ({onClose}) => {
   )
 }
 
-export default Checking
+export default ReAssignComplaint
