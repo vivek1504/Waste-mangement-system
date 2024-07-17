@@ -4,14 +4,7 @@ import React from 'react';
 const SignInComponent = () => {
   return (
         <>
-        <div className='flex items-center justify-center pt-5'>
-            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg ">
-                User SignIn
-            </button>
-            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg">
-                Driver SignIn
-            </button>
-        </div>
+        
       <div className="flex flex-col items-center justify-center px-6  mx-auto  lg:py-0">
         
         <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
