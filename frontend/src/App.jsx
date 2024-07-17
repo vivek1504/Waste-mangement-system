@@ -1,8 +1,6 @@
 import './App.css'
 import Camera from './components/userTab/userCamera/Camera'
 import Navbar from './components/Navbar'
-import Card from './pages/Card'
-
 import SignIn from './pages/SignIn'
 import UserLogin from './components/UserLogin'
 import UserPage from './pages/UserPage'
@@ -17,7 +15,6 @@ function App() {
   return (
     <>
       <Navbar />
-      {/* <Card /> */}
       {/* <CardAssign/>
       <CardDone/> */}
       {/* <CardAssignAgain/>
