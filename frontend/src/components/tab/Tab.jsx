@@ -22,7 +22,7 @@ const Tab = () => {
                 Completed
             </button>
         </div>
-        <div className='card-container'>
+        <div className='card-container '>
             <div className='card'>
                 {activeTab === 'tab1' && (
                     <div>
