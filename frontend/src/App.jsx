@@ -10,6 +10,7 @@ import CardAssign from './components/cards/CardAssign'
 import CardChecking from './components/cards/CardChecking'
 import CardAssignAgain from './components/cards/CardAssignAgain'
 import Tab from './components/userTab/tab/Tab'
+import CardDone from './components/cards/CardDone'
 
 
 function App() {
@@ -18,7 +19,8 @@ function App() {
       <Navbar />
       {/* <Card /> */}
       {/* <CardAssign/>
-      <CardAssignAgain/>
+      <CardDone/> */}
+      {/* <CardAssignAgain/>
       <CardChecking/> */}
       {/* <Camera /> */}
       {/* <UserLogin /> */}
