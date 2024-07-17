@@ -27,7 +27,7 @@ const ReAssignComplaint = ({onClose}) => {
                     <h3>Reason</h3>
                     <p>Places is not same.</p>
                   </div>
-                  <button class="px-3 py-1.5 flex gap-2 items-center ml-80 rounded-xl outline outline-2 mt-5 ml-4"><MdAssignmentAdd/> Assign Again</button>
+                  <button class="px-3 py-1.5 flex gap-2 items-center ml-80 rounded-xl outline outline-2 mt-5 "><MdAssignmentAdd/> Assign Again</button>
                   </div>
               </div>
           </div>

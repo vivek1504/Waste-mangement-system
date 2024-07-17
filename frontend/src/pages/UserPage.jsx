@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 import AssignComplaint from '../components/assignComplaint/AssignComplaint'
-import Tab from '../components/tab/Tab'
+import Tab from '../components/userTab/tab/Tab'
 import Checking from '../components/checking/Checking'
 
 
