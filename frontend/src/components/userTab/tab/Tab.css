@@ -1,9 +1,8 @@
+
 .tab-container{
     display:flex;
     flex-direction: column;
     align-items:center;
-    justify-content:center;
-    background-color: white;
     height:100vh;
 }
 
@@ -33,8 +32,10 @@ button{
 }
 
 .card{
-    width:1000px;
-    height:500px;
+    width: 1400px; 
+    
+    height:600px;
+    background-color: white;
     border:1px solid #ccc;
     border-radius:8px;
     padding:20px;
