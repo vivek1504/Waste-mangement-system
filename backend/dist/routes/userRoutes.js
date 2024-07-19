@@ -85,7 +85,9 @@ exports.userHandler.post("/raise-complaint", authMiddleware_1.authMiddleware, (r
         return res.status(403).json({ message: "unauthorized access" });
     }
     const { username } = req.body.user;
-    const { flat, area, pincode, city, state, image } = req.body;
+    const { flat, area, pincode, city, state } = req.body.address;
+    const { beforeImage } = req.body;
+    const pincodeInt = parseInt(pincode);
     try {
         const userDetails = yield prisma.user.findUnique({
             where: {
@@ -99,7 +101,7 @@ exports.userHandler.post("/raise-complaint", authMiddleware_1.authMiddleware, (r
             data: {
                 flat: flat,
                 area: area,
-                pincode: pincode,
+                pincode: pincodeInt,
                 city: city,
                 state: state,
             },
@@ -109,7 +111,7 @@ exports.userHandler.post("/raise-complaint", authMiddleware_1.authMiddleware, (r
                 address: {
                     connect: { id: address.id },
                 },
-                beforeImage: image,
+                beforeImage: beforeImage,
                 raisedBy: {
                     connect: { id: userDetails.id },
                 },
@@ -144,7 +146,10 @@ exports.userHandler.get("/myComplaints", authMiddleware_1.authMiddleware, (req, 
         }
         const myComplaints = yield prisma.complaint.findMany({
             where: {
-                raiserId: userDetails.id
+                raiserId: userDetails.id,
+            },
+            include: {
+                address: true
             }
         });
         return res.json({ myComplaints });

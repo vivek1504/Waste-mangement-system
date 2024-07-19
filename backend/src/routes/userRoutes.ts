@@ -89,7 +89,9 @@ userHandler.post("/raise-complaint", authMiddleware, async (req, res) => {
   }
 
   const {username} = req.body.user;
-  const { flat, area, pincode, city, state, image } = req.body;
+  const { flat, area, pincode, city, state } = req.body.address;
+  const { beforeImage } = req.body;
+  const pincodeInt = parseInt(pincode);
 
   try {
       const userDetails = await prisma.user.findUnique({
@@ -106,7 +108,7 @@ userHandler.post("/raise-complaint", authMiddleware, async (req, res) => {
           data: {
               flat: flat,
               area: area,
-              pincode: pincode,
+              pincode: pincodeInt,
               city: city,
               state: state,
           },
@@ -117,7 +119,7 @@ userHandler.post("/raise-complaint", authMiddleware, async (req, res) => {
               address: {
                   connect: { id: address.id },
               },
-              beforeImage: image,
+              beforeImage: beforeImage,
               raisedBy: {
                   connect: { id: userDetails.id },
               },
@@ -157,7 +159,10 @@ userHandler.get("/myComplaints",authMiddleware,async(req,res)=>{
 
       const myComplaints = await prisma.complaint.findMany({
         where : {
-          raiserId : userDetails.id
+          raiserId : userDetails.id,
+        },
+        include : {
+          address : true
         }
       })
 

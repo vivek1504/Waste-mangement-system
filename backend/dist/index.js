@@ -61,9 +61,8 @@ app.post("/upload", upload.single("file"), (req, res) => {
         });
     })();
 });
-const api_key = "6257fd3e07dd4faeb12b794a326ef911";
 app.get("/address", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { lat, lon } = req.body;
+    const { lat, lon } = req.query;
     const url = `https://api.geoapify.com/v1/geocode/reverse?lat=${lat}&lon=${lon}&apiKey=6257fd3e07dd4faeb12b794a326ef911 `;
     const response = yield fetch(url);
     const data = yield response.json();

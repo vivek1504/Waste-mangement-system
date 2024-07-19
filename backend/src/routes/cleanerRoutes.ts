@@ -106,7 +106,12 @@ cleanerHandler.post("/login", async (req, res) => {
         }
 
         const {username} = req.body.user;
+        console.log(username)
         const complaintId = req.body.complaintId;
+        console.log(complaintId)
+        if(!complaintId){
+            return res.json({message : "complaint id is required"})
+        }
  
         try{
             const cleanerDetails = await prisma.cleaner.findUnique({
@@ -188,6 +193,9 @@ cleanerHandler.post("/login", async (req, res) => {
             const complaints = await prisma.complaint.findMany({
                 where : {
                     cleanerId : userDetails.id
+                },
+                include : {
+                    address : true
                 }
             })
 
@@ -198,3 +206,30 @@ cleanerHandler.post("/login", async (req, res) => {
             return res.json({message : "cannot get complaints"})
         }
   })
+
+    cleanerHandler.get("/all-complaints",authMiddleware,async(req,res)=>{
+            const {role} = req.body.user;
+            
+            if(role !== "cleaner"){
+                return res.json({message : "unauthorized access"})
+            }
+    
+            try{
+                const complaints = await prisma.complaint.findMany({
+                    where : {
+                        status : {
+                            in : ['Processing','underEvaluation','Raised']
+                        }
+                    },
+                    include : {
+                        address : true
+                    }
+                    });
+    
+                return res.json(complaints);
+            }
+            catch(error){
+                console.log(error)
+                return res.json({message : "cannot get complaints"})
+            }
+    })

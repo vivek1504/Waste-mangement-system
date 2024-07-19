@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-export const SignInPage = () => {
+const SignInCleaner = () => {
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -9,7 +9,7 @@ export const SignInPage = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    fetch("http://localhost:3000/user/signup", {
+    fetch("http://localhost:3000/cleaner/signup", {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -20,7 +20,7 @@ export const SignInPage = () => {
     .then(data => {
       if(data.token){
         localStorage.setItem('token', data.token);
-        navigate('/dashboard');
+        navigate('/cleanerDashboard');
       }
     })
     .catch(error => console.error('Error:', error));
@@ -31,7 +31,7 @@ export const SignInPage = () => {
       <div className="w-[530px] bg-white rounded-lg border md:mt-0 xl:p-0">
         <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
           <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
-            Sign in to your account
+            Sign in to cleaner account
           </h1>
           <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit}>
             <div>
@@ -88,3 +88,4 @@ export const SignInPage = () => {
   );
 };
 
+export default SignInCleaner;

@@ -54,11 +54,8 @@ const storage = multer.diskStorage({
     })();
   });
 
-  const api_key = "6257fd3e07dd4faeb12b794a326ef911";
-
-
   app.get("/address", async (req, res) => {
-    const { lat, lon } = req.body;
+    const { lat, lon } = req.query;
     const url = `https://api.geoapify.com/v1/geocode/reverse?lat=${lat}&lon=${lon}&apiKey=6257fd3e07dd4faeb12b794a326ef911 `;
     const response = await fetch(url);
     const data = await response.json();

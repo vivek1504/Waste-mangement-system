@@ -38,7 +38,7 @@ model Complaint{
 
 model Address{
   id             Int          @id @default(autoincrement())
-  flat           String
+  flat           String?
   area           String 
   pincode        Int
   city           String
@@ -49,7 +49,7 @@ model Address{
 
 enum Status{
   Raised
-  Processing
+  d
   underEvaluation
   Rejected
   Completed

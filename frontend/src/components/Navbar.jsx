@@ -1,7 +1,3 @@
-import React from 'react'
-import Card from '../pages/Card'
-
-
 function Navbar() {
   return (
     <>
@@ -17,10 +13,6 @@ function Navbar() {
                     </div>
             </nav>
         </header>
-
-       
-
-
     </>
   )
 }

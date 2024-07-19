@@ -3,7 +3,7 @@ import './Cards.css'
 import { useState } from 'react'
 import Checking from '../checking/Checking'
 
-const CardChecking = () => {
+const CardCheckingAdmin = () => {
     const [showModal, setShowModal]=useState(false)
   return (
     <div className='pt-2 flex items-center justify-center'>
@@ -20,4 +20,4 @@ const CardChecking = () => {
   )
 }
 
-export default CardChecking
+export default CardCheckingAdmin

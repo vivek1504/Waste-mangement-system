@@ -96,7 +96,12 @@ exports.cleanerHandler.put("/assign-complaint", authMiddleware_1.authMiddleware,
         return res.json({ message: "unauthorized access" });
     }
     const { username } = req.body.user;
+    console.log(username);
     const complaintId = req.body.complaintId;
+    console.log(complaintId);
+    if (!complaintId) {
+        return res.json({ message: "complaint id is required" });
+    }
     try {
         const cleanerDetails = yield prisma.cleaner.findUnique({
             where: {
@@ -164,6 +169,32 @@ exports.cleanerHandler.get("/my-complaints", authMiddleware_1.authMiddleware, (r
         const complaints = yield prisma.complaint.findMany({
             where: {
                 cleanerId: userDetails.id
+            },
+            include: {
+                address: true
+            }
+        });
+        return res.json(complaints);
+    }
+    catch (error) {
+        console.log(error);
+        return res.json({ message: "cannot get complaints" });
+    }
+}));
+exports.cleanerHandler.get("/all-complaints", authMiddleware_1.authMiddleware, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { role } = req.body.user;
+    if (role !== "cleaner") {
+        return res.json({ message: "unauthorized access" });
+    }
+    try {
+        const complaints = yield prisma.complaint.findMany({
+            where: {
+                status: {
+                    in: ['Processing', 'underEvaluation', 'Raised']
+                }
+            },
+            include: {
+                address: true
             }
         });
         return res.json(complaints);
