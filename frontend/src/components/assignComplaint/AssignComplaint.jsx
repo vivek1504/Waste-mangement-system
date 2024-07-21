@@ -2,7 +2,7 @@ import React, {useRef} from 'react'
 import './AssignComplaint.css'
 import { CiCircleRemove } from "react-icons/ci";
 import { MdAssignmentAdd } from "react-icons/md";
-
+import {motion} from 'framer-motion'
 
 const AssignComplaint = ({onClose, address, image, id}) => {
   const modalRef = useRef();
@@ -31,21 +31,36 @@ const AssignComplaint = ({onClose, address, image, id}) => {
   }
     return(
       <>
-        <div ref={modalRef} onClick={closeModal} className='fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm flex justify-center items-center'>
+        <motion.div
+            initial={{opacity:0}}
+            animate={{opacity:1}}
+            transition={{delay:0.2, duration:0.5}} ref={modalRef} onClick={closeModal} className='fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm flex justify-center items-center'>
           <div className='mt-10 flex flex-col gap-5 text-black'>
-            <button onClick={onClose} className='place-serif-end '><CiCircleRemove size={30}/></button>
+            <motion.button onClick={onClose} className='place-serif-end '
+            animate={{y: 60,x:60}}><CiCircleRemove size={40}/></motion.button>
               <div class="card-container1 rounded-xl px-20 py-10 flex flex-col gap-5 items-center mx-4">
                 <div class="card1">
-                  <img src={image}/>
+                  <motion.img
+                          transition={{duration:0.3}}
+                          whileHover={{
+                          scale:1.5
+                          }}
+                  src={image}/>
                   <div class="card-content1">
                     <h3>Address</h3>
                     <p>{address.flat + ", " + address.area + ", " + address.city + ", " + address.pincode + ", " + address.state}</p>
                   </div>
-                  <button onClick={handleAssign} class="px-3 py-1.5 flex gap-2 items-center rounded-xl outline outline-2 mt-5 ml-4"><MdAssignmentAdd/> Assign Complaint</button>
+                  <motion.button 
+                    transition={{duration:0.2}}
+                    whileHover={{
+                    scale:1.1,
+                    textShadow: "0px 0px 8px rgb(255 255 255)",
+                    boxShadow:"0px 0px 8px rgb(255 255 255)"
+                    }} onClick={handleAssign} class="px-3 py-1.5 flex gap-2 items-center rounded-xl outline outline-2 mt-5 ml-4"><MdAssignmentAdd/> Assign Complaint</motion.button>
                 </div>
               </div>
           </div>
-        </div>
+        </motion.div>
       </>
   )
 }

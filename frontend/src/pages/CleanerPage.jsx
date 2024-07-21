@@ -4,6 +4,7 @@ import CardAssign from "../components/cards/CardAssign";
 import CardDone from "../components/cards/CardDone";
 import { useRecoilState } from "recoil";
 import { activeComplaintAtom } from "../atom";
+import {motion} from 'framer-motion'
 
 export const CleanerPage = () => {
     const [activeTab, setActiveTab] = useState('');
@@ -76,7 +77,14 @@ export const CleanerPage = () => {
     return <>
      <div className='flex flex-col items-center h-screen mt-10'>
             <div className='mb-5'>
-                <button 
+                <motion.button
+                    initial={{opacity:0,x:500}}
+                    animate={{opacity:1,x:0}}
+                    transition={{duration:0.5,type: 'spring' , stiffness:120}}
+                    whileHover={{
+                    scale:1.1,
+                    textShadow: "0px 0px 8px rgb(255 255 255)",
+                    }} 
                     className={` py-2 px-4 mx-1 cursor-pointer text-lg ${activeTab === 'tab1' ? 'text-orange-400' : 'text-black'}`}
                     onClick={() => handleTabChange("tab1")} 
                 >
@@ -84,18 +92,29 @@ export const CleanerPage = () => {
                         Pending Complaints
                     </div>
 
-                </button>
-                <button 
+                </motion.button>
+                <motion.button
+                    initial={{opacity:0,x:500}}
+                    animate={{opacity:1,x:0}}
+                    transition={{duration:0.5,type: 'spring' , stiffness:120}}
+                    whileHover={{
+                    scale:1.1,
+                    textShadow: "0px 0px 8px rgb(255 255 255)",
+                    }}
                     className={`bg-transparent border-none py-2 px-4 mx-1 cursor-pointer text-lg ${activeTab === 'tab2' ? 'text-orange-400' : 'text-black'}`}
                     onClick={() => handleTabChange("tab2")} 
                 >
                     <div className='border-2 bg-white border-black px-20 py-16 shadow-lg font-bold text-2xl rounded-xl'>
                         Completed
                     </div>
-                </button>
+                </motion.button>
             </div>
             <div> 
-             {activeTab !== "" &&<div className='flex items-center justify-center w-full'>
+             {activeTab !== "" &&
+             <motion.div className='flex items-center justify-center w-full'
+                  initial={{x:500}}
+                  animate={{x:0}}
+                  transition={{ type: 'spring' , stiffness:120}}>
                 <div className='w-[1000px] h-[550px] bg-white border border-gray-300 rounded-lg p-5 shadow-lg  overflow-y-auto'>
                     {activeTab === 'tab1' && (
                         <div>
@@ -113,7 +132,7 @@ export const CleanerPage = () => {
                         </div>                    
                     )}
                 </div>
-            </div>}
+            </motion.div>}
             </div>
         </div>
 

@@ -2,6 +2,7 @@ import React, {useRef , useState } from 'react'
 import './PopUpCleanerSubmit.css'
 import Webcam from 'react-webcam';
 import { CiCircleRemove } from "react-icons/ci";
+import {motion} from 'framer-motion'
 
 export const PopUpCleanerSubmit = ({onClose}) => {
     const modalRef = useRef();
@@ -58,22 +59,27 @@ export const PopUpCleanerSubmit = ({onClose}) => {
     return new File([u8arr], filename, { type: mime });
   };
   return (
-    <div>
-        <div ref={modalRef} onClick={closeModal} className='fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm flex justify-center items-center'>
+        <motion.div
+            initial={{opacity:0}}
+            animate={{opacity:1}}
+            transition={{delay:0.2, duration:0.5}} ref={modalRef} onClick={closeModal} className='fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm flex justify-center items-center'>
             <div className='mt-4 flex flex-col gap-5 text-black'>
-            <button onClick={onClose} className='place-serif-end '><CiCircleRemove size={30}/></button>
+            <motion.button onClick={onClose} className='place-serif-end '
+            animate={{y: 60,x:60}}><CiCircleRemove size={40}/></motion.button>
                 <div class="card-container rounded-xl px-20 py-10 flex flex-col gap-5 items-center mx-4">
                 <div class="card">
                     <div class='upper-card gap-5 mt-4'>
-                    <img src="https://api.time.com/wp-content/uploads/2021/03/trash-pandemic-covid-19-01.jpg"/>
+                    <motion.img
+                          transition={{duration:0.3}}
+                          whileHover={{
+                          scale:1.1
+                          }} src="https://api.time.com/wp-content/uploads/2021/03/trash-pandemic-covid-19-01.jpg"/>
                     <div class="card-content">
                         <h3>Address</h3>
                         <p>4001 Dwivedi Orchard, Yakima, Himachal Pradesh 785 138, India</p>
                     </div>
-                    {/* <IoSwapHorizontal size={20}/>
-                    <img src="https://st3.depositphotos.com/1000151/17469/i/950/depositphotos_174690294-stock-photo-cleaning-street-in-singapore.jpg" /> */}
                   </div>
-                  <div>
+                <div>
       <div className='flex justify-center items-center pt-4'>
         
         <Webcam
@@ -86,7 +92,11 @@ export const PopUpCleanerSubmit = ({onClose}) => {
         />
         {imgSrc && (
           <div className='ml-10 h-full w-full'>
-            <img className='rounded-lg ' src={imgSrc} alt="Captured" />
+            <motion.img
+                          transition={{duration:0.3}}
+                          whileHover={{
+                          scale:1.5
+                          }} className='rounded-lg ' src={imgSrc} alt="Captured" />
           </div>
         )}
         
@@ -94,12 +104,26 @@ export const PopUpCleanerSubmit = ({onClose}) => {
 
       <div className='flex items-center justify-center mt-4 gap-3' >
       <div className='flex items-center justify-center pt-2'>
-        <button className='border-2 rounded-lg dark:bg-black dark:text-white h-12 w-40' onClick={capture}>Capture photo</button>
+        <motion.button
+        transition={{duration:0.2}}
+        whileHover={{
+          scale:1.1,
+          textShadow: "0px 0px 8px rgb(255 255 255)",
+                                    boxShadow:"0px 0px 8px rgb(255 255 255)"
+        }}
+        className='border-2 rounded-lg dark:bg-black dark:text-white h-12 w-40' onClick={capture}>Capture photo</motion.button>
       </div>
 
       {imgSrc && (
         <div className='flex items-center justify-center pt-2'>
-          <button className='border-2 rounded-lg dark:bg-black dark:text-white h-12 w-40' onClick={uploadImage}>Submit</button>
+          <motion.button 
+          transition={{duration:0.2}}
+          whileHover={{
+          scale:1.1,
+          textShadow: "0px 0px 8px rgb(255 255 255)",
+          boxShadow:"0px 0px 8px rgb(255 255 255)"
+        }}
+          className='border-2 rounded-lg dark:bg-green-700 dark:text-white h-12 w-40' onClick={uploadImage}>Submit</motion.button>
         </div>
       )}
       </div>
@@ -112,8 +136,7 @@ export const PopUpCleanerSubmit = ({onClose}) => {
                   </div>
               </div>
           </div>
-        </div>
-    </div>
+        </motion.div>
   )
 }
 
