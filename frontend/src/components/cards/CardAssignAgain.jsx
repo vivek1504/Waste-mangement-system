@@ -2,11 +2,16 @@ import React from 'react'
 import './Cards.css'
 import { useState } from 'react'
 import ReAssignComplaint from '../reAssignComplaint/ReAssignComplaint'
+import {motion} from 'framer-motion'
 
 const CardAssignAgain = () => {
     const [showModal, setShowModal]=useState(false)
   return (
-    <div className=' pt-8 flex items-center justify-center'>
+    <motion.div className=' pt-8 flex items-center justify-center'
+      initial={{opacity:0}}
+      animate={{opacity:1}}
+      transition={{delay:0.2,duration:1}}
+      >
     <div onClick={()=>setShowModal(true)} className="template flex flex-col items-center pl-3  bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-5xl hover:bg-gray-100 dark:border-gray-700 dark:bg-white ">
         <img className="object-cover p-6 w-64 rounded-lg h-96 md:h-auto  md:rounded-none md:rounded-s-lg" src="https://cdn.britannica.com/02/141102-050-82CB8A59/Bulldozers-landfill.jpg" alt="Noteworthy technology acquisitions 2021" />
         <div className="flex flex-col justify-between p-4 leading-normal">
@@ -17,7 +22,7 @@ const CardAssignAgain = () => {
         </div>
     </div>
     {showModal && <ReAssignComplaint onClose={() =>setShowModal(false)} />}
-    </div>
+    </motion.div>
   )
 }
 

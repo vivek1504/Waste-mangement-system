@@ -4,6 +4,7 @@ import FileUploadComponent from './UploadImg';
 import { FaArrowRightToBracket } from "react-icons/fa6";
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { imageAtom, stepAtom } from '../../../atom';
+import {motion} from 'framer-motion'
 
 const Camera = () => {
   const webcamRef = useRef(null);
@@ -57,9 +58,11 @@ const Camera = () => {
   };
 
   return (
-    <div>
+    <motion.div
+        initial={{opacity:0}}
+        animate={{opacity:1}}
+        transition={{duration:1}}>
       <div className='flex justify-center items-center pt-4'>
-        
         <Webcam
           audio={false}
           ref={webcamRef}
@@ -79,34 +82,38 @@ const Camera = () => {
 
       <div className='flex items-center justify-center mt-4 gap-3' >
       <div className='flex items-center justify-center pt-2'>
-        <button className='border-2 rounded-lg dark:bg-black dark:text-white h-12 w-40' onClick={capture}>Capture photo</button>
+        <motion.button className='border-2 rounded-lg dark:bg-black dark:text-white h-12 w-40'
+          initial={{opacity:0}}
+          animate={{opacity:1}}
+          transition={{duration:0.2}}
+          whileHover={{
+          scale:1.1,
+          textShadow: "0px 0px 8px rgb(255 255 255)",
+          boxShadow:"0px 0px 8px rgb(255 255 255)" }}
+        onClick={capture}>Capture photo</motion.button>
       </div>
 
       {imgSrc && (
         <div className='flex items-center justify-center pt-2'>
-          <button className='border-2 rounded-lg dark:bg-black dark:text-white h-12 w-40' onClick={uploadImage}>Upload photo</button>
+          <motion.button className='border-2 rounded-lg dark:bg-black dark:text-white h-12 w-40'
+            initial={{opacity:0}}
+            animate={{opacity:1}}
+            transition={{duration:0.2}}
+            whileHover={{
+            scale:1.1,
+            textShadow: "0px 0px 8px rgb(255 255 255)",
+            boxShadow:"0px 0px 8px rgb(255 255 255)" }}
+            onClick={uploadImage}>Upload photo</motion.button>
         </div>
       )}
       </div>
-
-      {/* <div className="inline-flex items-center justify-center w-full">
-        <hr className="w-64 h-px my-8 bg-gray-200 border-0 dark:bg-gray-700"/>
-        <span className="absolute px-3 text-gray-900 -translate-x-1/2 bg-white left-1/2 dark:text-black text-xl font-semibold mt-4">OR</span>
-      </div>
-
-      <FileUploadComponent /> */}
-      
-      {/* <div className='flex justify-end items-center mt-14 mr-8'>
-        <FaArrowRightToBracket className='text-2xl'/>
-        <p className='text-2xl'>Step-2</p>
-      </div> */}
 
       {uploadStatus && (
         <div className='text-center pt-2'>
           <p>{uploadStatus}</p>
         </div>
       )}
-    </div>
+    </motion.div>
   );
 };
 
