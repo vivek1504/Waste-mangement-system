@@ -13,6 +13,7 @@
     "@radix-ui/react-tabs": "^1.1.0",
     "@types/recoil": "^0.0.9",
     "axios": "^1.7.2",
+    "framer-motion": "^11.3.7",
     "lucide-react": "^0.408.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
