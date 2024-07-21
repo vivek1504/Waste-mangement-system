@@ -9,6 +9,9 @@ import { CleanerPage } from './pages/CleanerPage'
 import { Suspense } from 'react'
 import SignInCleaner from './pages/SigninCleaner'
 import { SignInPage } from './pages/SignInUser'
+import { HeroParallaxDemo } from './components/HeroSection/HeroParallaxDemo'
+import { LampDemo } from './components/LampSection/LampDemo'
+import Buttons from './Buttons'
 
 
 function App() {
@@ -26,9 +29,14 @@ function App() {
         <Route path='/cleanerSignin' element={<SignInCleaner></SignInCleaner>}></Route>
       </Routes>
       </BrowserRouter>
-      <FooterComp></FooterComp>
       </Suspense>
       </RecoilRoot>
+
+      <HeroParallaxDemo />
+      {/* <LampDemo /> */}
+      <Buttons />
+      <FooterComp></FooterComp>
+
     </>
   )
 }
