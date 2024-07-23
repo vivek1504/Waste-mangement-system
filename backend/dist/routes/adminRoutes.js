@@ -19,6 +19,9 @@ exports.adminHandler.get("/under-evaluation-complaints", (req, res) => __awaiter
         const complaints = yield prisma.complaint.findMany({
             where: {
                 status: "underEvaluation"
+            },
+            include: {
+                address: true
             }
         });
         return res.json({ complaints });

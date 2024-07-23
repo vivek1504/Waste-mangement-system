@@ -32,8 +32,8 @@ const AssignComplaint = ({onClose, address, image, id}) => {
     return(
       <>
         <motion.div
-            initial={{opacity:0}}
-            animate={{opacity:1}}
+            initial={{opacity:0,y:20}}
+            animate={{opacity:1,y:0}}
             transition={{delay:0.2, duration:0.5}} ref={modalRef} onClick={closeModal} className='fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm flex justify-center items-center'>
           <div className='mt-10 flex flex-col gap-5 text-black'>
             <motion.button onClick={onClose} className='place-serif-end '
@@ -43,7 +43,7 @@ const AssignComplaint = ({onClose, address, image, id}) => {
                   <motion.img
                           transition={{duration:0.3}}
                           whileHover={{
-                          scale:1.5
+                          scale:1.05
                           }}
                   src={image}/>
                   <div class="card-content1">

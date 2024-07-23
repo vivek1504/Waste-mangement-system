@@ -4,7 +4,7 @@ import Webcam from 'react-webcam';
 import { CiCircleRemove } from "react-icons/ci";
 import {motion} from 'framer-motion'
 
-export const PopUpCleanerSubmit = ({onClose}) => {
+export const PopUpCleanerSubmit = ({onClose, id, image, address}) => {
     const modalRef = useRef();
   const closeModal = (e) =>{
     if(modalRef.current === e.target){
@@ -38,7 +38,19 @@ export const PopUpCleanerSubmit = ({onClose}) => {
 
       if (response.ok) {
         const data = await response.json();
-        setUploadStatus(`File uploaded successfully! File location: ${data.location}`);
+        const res = await fetch('http://localhost:3000/cleaner/finish-complaint', {
+          method: 'PUT',
+          headers : {
+            'Content-Type': 'application/json',
+            'Authorization': localStorage.getItem('token')
+          },
+          body: JSON.stringify({
+            complaintId: id,
+            image: data.url
+          })
+        })
+        setUploadStatus(`File uploaded successfully!`);
+        onClose();
       } else {
         setUploadStatus('File upload failed.');
       }
@@ -60,9 +72,9 @@ export const PopUpCleanerSubmit = ({onClose}) => {
   };
   return (
         <motion.div
-            initial={{opacity:0}}
-            animate={{opacity:1}}
-            transition={{delay:0.2, duration:0.5}} ref={modalRef} onClick={closeModal} className='fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm flex justify-center items-center'>
+            initial={{opacity:0,y:0}}
+          animate={{opacity:1,y:-30}}
+          transition={{delay:0.2, duration:0.5}} ref={modalRef} onClick={closeModal} className='fixed inset-0 bg-[#f7f5ee] bg-opacity-30 backdrop-blur-sm flex justify-center items-center'>
             <div className='mt-4 flex flex-col gap-5 text-black'>
             <motion.button onClick={onClose} className='place-serif-end '
             animate={{y: 60,x:60}}><CiCircleRemove size={40}/></motion.button>
@@ -73,10 +85,10 @@ export const PopUpCleanerSubmit = ({onClose}) => {
                           transition={{duration:0.3}}
                           whileHover={{
                           scale:1.1
-                          }} src="https://api.time.com/wp-content/uploads/2021/03/trash-pandemic-covid-19-01.jpg"/>
+                          }} src={image}/>
                     <div class="card-content">
                         <h3>Address</h3>
-                        <p>4001 Dwivedi Orchard, Yakima, Himachal Pradesh 785 138, India</p>
+                        <p>{address.flat + ", " + address.area + ", " + address.city + ", " + address.pincode + ", " + address.state}</p>
                     </div>
                   </div>
                 <div>
@@ -111,7 +123,7 @@ export const PopUpCleanerSubmit = ({onClose}) => {
           textShadow: "0px 0px 8px rgb(255 255 255)",
                                     boxShadow:"0px 0px 8px rgb(255 255 255)"
         }}
-        className='border-2 rounded-lg dark:bg-black dark:text-white h-12 w-40' onClick={capture}>Capture photo</motion.button>
+        className='border-2 rounded-lg bg-blue-500 hover:bg-blue-600 text-white h-12 w-40 mr-10' onClick={capture}>Capture photo</motion.button>
       </div>
 
       {imgSrc && (
@@ -123,7 +135,7 @@ export const PopUpCleanerSubmit = ({onClose}) => {
           textShadow: "0px 0px 8px rgb(255 255 255)",
           boxShadow:"0px 0px 8px rgb(255 255 255)"
         }}
-          className='border-2 rounded-lg dark:bg-green-700 dark:text-white h-12 w-40' onClick={uploadImage}>Submit</motion.button>
+          className='border-2 bg-blue-500 hover:bg-blue-600 rounded-lg text-white h-12 w-40' onClick={uploadImage}>Submit</motion.button>
         </div>
       )}
       </div>
@@ -139,4 +151,3 @@ export const PopUpCleanerSubmit = ({onClose}) => {
         </motion.div>
   )
 }
-

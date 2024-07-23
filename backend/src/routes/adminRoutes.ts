@@ -11,6 +11,9 @@ adminHandler.get("/under-evaluation-complaints",async(req,res)=>{
         const complaints = await prisma.complaint.findMany({
             where : {
                 status : "underEvaluation"
+            },
+            include : {
+                address : true
             }
         })
 
