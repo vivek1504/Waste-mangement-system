@@ -77,7 +77,7 @@ const UserAddress = () => {
       <div className='header'>
         <p className="text">Location</p>
       </div>
-      <div className='mt-20 ml-4 mr-4 bg-white'>
+      <div className='mt-16 ml-4 mr-4 bg-white'>
         <div className='flex items-center justify-center bg-white'>
           <motion.div className="p-4 rounded-lg"
               whileHover={{
@@ -142,10 +142,10 @@ const UserAddress = () => {
               scale:1.04,
               textShadow: "0px 0px 8px rgb(255 255 255)",
               boxShadow:"0px 0px 8px rgb(255 255 255)" }}>
-        <div className="inline-block w-auto text-center min-w-[200px] px-6 py-4 text-white transition-all rounded-md shadow-xl sm:w-auto bg-gradient-to-r from-blue-600 to-blue-500 hover:bg-gradient-to-b shadow-blue-200 hover:shadow-2xl hover:shadow-blue-400 hover:-tranneutral-y-px">
-          <button onClick={handleUseCurrentLocation} className='locate inline-flex items-center justify-center'>
+        <div className="inline-block w-auto text-center min-w-[200px]  text-white transition-all rounded-md shadow-xl sm:w-auto bg-gradient-to-r from-blue-600 to-blue-500 hover:bg-gradient-to-b shadow-blue-200 hover:shadow-2xl hover:shadow-blue-400 hover:-tranneutral-y-px">
+          <button onClick={handleUseCurrentLocation} className='locate inline-flex items-center justify-center px-6 py-4'>
             <MdOutlineMyLocation className="text-xl text-white" />
-            <p className='text-xl'>Use Current Location</p>
+            <p className='text-xl'>Current Location</p>
           </button>
         </div>
       </motion.div>

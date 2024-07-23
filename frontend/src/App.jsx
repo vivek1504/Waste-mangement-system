@@ -12,6 +12,9 @@ import { SignInPage } from './pages/SignInUser'
 import { HeroParallaxDemo } from './components/HeroSection/HeroParallaxDemo'
 import { LampDemo } from './components/LampSection/LampDemo'
 import Buttons from './Buttons'
+import { HeroParallax } from './components/HeroSection/HeroParallax'
+import { LoginUser } from './pages/LoginUser'
+import { CleanerLogin } from './pages/LoginCleaner'
 
 
 function App() {
@@ -22,19 +25,18 @@ function App() {
       <Navbar />
       <BrowserRouter>
       <Routes>
-        <Route path='/dashboard' element={<Dashboard></Dashboard>}></Route>
+        <Route path='/userDashboard' element={<Dashboard></Dashboard>}></Route>
         <Route path='/admin' element={<Admin></Admin>}></Route>
         <Route path='/cleanerDashboard' element={<CleanerPage></CleanerPage>}></Route>
-        <Route path='/signin' element={<SignInPage></SignInPage>}></Route>
+        <Route path='/usersignin' element={<SignInPage></SignInPage>}></Route>
         <Route path='/cleanerSignin' element={<SignInCleaner></SignInCleaner>}></Route>
+        <Route path='/' element={<HeroParallaxDemo></HeroParallaxDemo>}></Route>
+        <Route path='/userlogin' element={<LoginUser></LoginUser>}></Route>
+        <Route path='/cleanerlogin' element={<CleanerLogin></CleanerLogin>}></Route>
       </Routes>
       </BrowserRouter>
       </Suspense>
       </RecoilRoot>
-
-      <HeroParallaxDemo />
-      {/* <LampDemo /> */}
-      <Buttons />
       <FooterComp></FooterComp>
 
     </>

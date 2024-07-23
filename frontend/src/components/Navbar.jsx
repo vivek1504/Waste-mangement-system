@@ -5,7 +5,7 @@ function Navbar() {
   return (
     <>
         <header className="shadow-lg z-50 top-0 ">
-            <nav className="bg-white border-gray-200 px-4  lg:px-6 py-2.5 h-28">
+            <nav className="bg-white text-green-800 border-gray-200 px-4  lg:px-6 py-2.5 h-28">
                     <motion.div className=" flex flex-wrap"
                         initial={{y:-100}}
                         animate={{y: -10}}
@@ -19,7 +19,7 @@ function Navbar() {
                             className="mr-3 h-24 rounded-full"
                             alt="Logo"
                         />
-                        <span className='p-8  text-4xl font-bold'>Waste Management System</span>
+                        <span className='p-8  text-5xl font-bold'>GarbageOut.in</span>
                     </motion.div>
             </nav>
         </header>

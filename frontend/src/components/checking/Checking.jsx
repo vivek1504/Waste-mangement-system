@@ -6,17 +6,46 @@ import { BsPatchCheck } from "react-icons/bs";
 import { RxCrossCircled } from "react-icons/rx";
 import {motion} from 'framer-motion'
 
-const Checking = ({onClose}) => {
+const Checking = ({onClose , id ,beforeImage, afterImage, address}) => {
     const modalRef = useRef();
   const closeModal = (e) =>{
     if(modalRef.current === e.target){
       onClose();
     }
   }
+
+  const handleSubmitApproved = async()=>{
+     await fetch(`http://localhost:3000/admin/evaluate`,{
+      method: 'PUT',
+      headers : {
+        'Content-Type' : 'application/json'
+      },
+      body : JSON.stringify({
+        complaintId : id,
+        status : "Completed"
+      })}
+      )
+      onClose();
+    }
+
+  const handleSubmitRejectd = async()=>{
+    await fetch(`http://localhost:3000/admin/evaluate`,{
+     method: 'PUT',
+     headers: {
+      'Content-Type': 'application/json',
+  },
+     body : JSON.stringify({
+       complaintId : id,
+       status : "Rejected"
+        })
+    })
+ onClose()
+}
+
   return (
       <motion.div
-          initial={{opacity:0}}
-          animate={{opacity:1}}
+          initial={{opacity:0,y:0}}
+          animate={{opacity:1,y:-40}}
           transition={{delay:0.2, duration:0.5}} ref={modalRef} onClick={closeModal} className='fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm flex justify-center items-center'>
           <div className='mt-10 flex flex-col gap-5 text-black'>
             <motion.button onClick={onClose} className='place-serif-end '
@@ -28,33 +57,41 @@ const Checking = ({onClose}) => {
                           transition={{duration:0.3}}
                           whileHover={{
                           scale:1.1
-                          }} src="https://api.time.com/wp-content/uploads/2021/03/trash-pandemic-covid-19-01.jpg"/>
+                          }} src={beforeImage}/>
                     <IoSwapHorizontal size={30}/>
                     <motion.img
                           transition={{duration:0.3}}
                           whileHover={{
                           scale:1.1
-                          }} src="https://st3.depositphotos.com/1000151/17469/i/950/depositphotos_174690294-stock-photo-cleaning-street-in-singapore.jpg" />
+                          }} src={afterImage} />
                   </div>
                   <div class="card-content">
                     <h3>Address</h3>
-                    <p>4001 Dwivedi Orchard, Yakima, Himachal Pradesh 785 138, India</p>
+                    <p>{address.flat + ", " + address.area + ", " + address.city + ", " + address.pincode + ", " + address.state}</p>
                   </div>
                   <div class='icon gap-36'>
-                  <motion.div
+                  <motion.button
                   transition={{duration:0.2}}
                           whileHover={{
-                          scale:1.3
-                          }}>
-                  <BsPatchCheck size={50}/>
-                  </motion.div>
-                  <motion.div
+                          scale:1.1
+                          }}
+                  onClick={handleSubmitApproved}>
+                  <div className='bg-[#03C03C] font-bold text-lg text-white rounded-lg px-10 py-3 '>
+                      Accept
+                    </div>
+                  </motion.button>
+                  <motion.button
                   transition={{duration:0.2}}
                           whileHover={{
-                          scale:1.3
-                          }}>
-                  <RxCrossCircled size={50}/>
-                  </motion.div>
+                          scale:1.1,
+                          textShadow: "0px 0px 8px rgb(255 255 255)",
+                                    boxShadow:"0px 0px 8px rgb(255 255 255)" 
+                          }}
+                  onClick={handleSubmitRejectd}>
+                    <div className='bg-[#FF0800] font-bold text-lg text-white rounded-lg px-10 py-3 '>
+                      Reject
+                    </div>
+                  </motion.button>
                   </div>
                 </div>
               </div>

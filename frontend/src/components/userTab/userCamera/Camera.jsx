@@ -82,7 +82,7 @@ const Camera = () => {
 
       <div className='flex items-center justify-center mt-4 gap-3' >
       <div className='flex items-center justify-center pt-2'>
-        <motion.button className='border-2 rounded-lg dark:bg-black dark:text-white h-12 w-40'
+        <motion.button className='border-2 rounded-lg bg-blue-500 text-white h-12 w-40'
           initial={{opacity:0}}
           animate={{opacity:1}}
           transition={{duration:0.2}}
@@ -95,7 +95,7 @@ const Camera = () => {
 
       {imgSrc && (
         <div className='flex items-center justify-center pt-2'>
-          <motion.button className='border-2 rounded-lg dark:bg-black dark:text-white h-12 w-40'
+          <motion.button className='border-2 rounded-lg bg-blue-500 text-white h-12 w-40'
             initial={{opacity:0}}
             animate={{opacity:1}}
             transition={{duration:0.2}}

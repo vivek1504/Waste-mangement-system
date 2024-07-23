@@ -49,7 +49,7 @@ model Address{
 
 enum Status{
   Raised
-  d
+  Processing
   underEvaluation
   Rejected
   Completed

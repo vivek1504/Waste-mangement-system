@@ -5,6 +5,8 @@ import CardDone from "../components/cards/CardDone";
 import { useRecoilState } from "recoil";
 import { activeComplaintAtom } from "../atom";
 import {motion} from 'framer-motion'
+import { IoReloadCircleOutline } from "react-icons/io5";
+
 
 export const CleanerPage = () => {
     const [activeTab, setActiveTab] = useState('');
@@ -12,7 +14,9 @@ export const CleanerPage = () => {
     const [isLoading, setIsLoading] = useState(false); 
     const [error, setError] = useState(null);
     const [assignedComplaints, setAssignedComplaints] = useState([]);
-    console.log(activeComplaints);
+    const [completedComplaints, setCompletedComplaints] = useState([]);
+    const [refresh, setRefresh] = useState(false);
+
 
     const handleTabChange = (tab) => {
         setActiveTab(tab);
@@ -32,7 +36,11 @@ export const CleanerPage = () => {
                 }
 
                 const data = await response.json();
-                setAssignedComplaints(data);
+                console.log(data)
+                const assigned = data.filter((complaint) => complaint.status === 'Processing' || complaint.status === 'underEvaluation' || complaint.status === 'Rejected');
+                setAssignedComplaints(assigned);
+                const completed = data.filter((complaint) => complaint.status === 'Completed');
+                setCompletedComplaints(completed);
             } catch (error) {
                 console.error('Error fetching complaints:', error);
                 setError(error.message);
@@ -42,7 +50,7 @@ export const CleanerPage = () => {
         };
 
         fetchComplaints();
-    },[])
+    },[refresh])
 
   useEffect(() => {
     const fetchComplaints = async () => {
@@ -61,7 +69,8 @@ export const CleanerPage = () => {
         }
 
         const data = await response.json();
-        setActiveComplaints(data);
+        const complaintRaised = data.filter((complaint) => complaint.status === 'Raised');
+        setActiveComplaints(complaintRaised);
       } catch (error) {
         console.error('Error fetching complaints:', error);
         setError(error.message);
@@ -71,7 +80,7 @@ export const CleanerPage = () => {
     };
 
     fetchComplaints();
-  }, []);
+  }, [refresh]);
     
 
     return <>
@@ -85,7 +94,7 @@ export const CleanerPage = () => {
                     scale:1.1,
                     textShadow: "0px 0px 8px rgb(255 255 255)",
                     }} 
-                    className={` py-2 px-4 mx-1 cursor-pointer text-lg ${activeTab === 'tab1' ? 'text-orange-400' : 'text-black'}`}
+                    className={` py-2 px-4 mx-1 cursor-pointer text-lg ${activeTab === 'tab1' ? 'text-blue-600' : 'text-black'}`}
                     onClick={() => handleTabChange("tab1")} 
                 >
                     <div className='border-2 bg-white border-black px-8 py-16 shadow-lg font-bold text-2xl rounded-xl'>
@@ -101,7 +110,7 @@ export const CleanerPage = () => {
                     scale:1.1,
                     textShadow: "0px 0px 8px rgb(255 255 255)",
                     }}
-                    className={`bg-transparent border-none py-2 px-4 mx-1 cursor-pointer text-lg ${activeTab === 'tab2' ? 'text-orange-400' : 'text-black'}`}
+                    className={`bg-transparent border-none py-2 px-4 mx-1 cursor-pointer text-lg ${activeTab === 'tab2' ? 'text-blue-600' : 'text-black'}`}
                     onClick={() => handleTabChange("tab2")} 
                 >
                     <div className='border-2 bg-white border-black px-20 py-16 shadow-lg font-bold text-2xl rounded-xl'>
@@ -118,15 +127,15 @@ export const CleanerPage = () => {
                 <div className='w-[1000px] h-[550px] bg-white border border-gray-300 rounded-lg p-5 shadow-lg  overflow-y-auto'>
                     {activeTab === 'tab1' && (
                         <div>
-                          {assignedComplaints && assignedComplaints.filter(complaint =>{complaint.status === "Processing" }).map((complaint) => {
-                            return <CardCheckingCleaner key={complaint.id} image={complaint.beforeImage} address={complaint.address} />
+                          {assignedComplaints.length && assignedComplaints.map((complaint) => {
+                            return <CardCheckingCleaner key={complaint.id} id={complaint.id} image={complaint.beforeImage} address={complaint.address} status={complaint.status}/>
                           })}
                             
-                        </div>
+                        </div> 
                     )}
                     {activeTab === 'tab2' && (
                         <div>
-                          {assignedComplaints && assignedComplaints.filter(complaint =>{complaint.status === "Completed"}).map((complaint) => {
+                          {completedComplaints  && completedComplaints.map((complaint) => {
                             return <CardDone key={complaint.id} image={complaint.beforeImage} address={complaint.address} type={"completed"} />
                           })}
                         </div>                    
@@ -136,7 +145,18 @@ export const CleanerPage = () => {
             </div>
         </div>
 
-        <div className="mt-10">
+        <div className="flex justify-around mt-24 border-dotted border-b-2 mx-10 ">
+        <div className="flex justify-around w-full space-x-72 mb-2 select-none rounded-t-lg rounded-full border-b-4 border-slate-600 bg-slate-500 p-4 font-medium hover:border-slate-700">
+          <div className="font-bold text-2xl mt-2 text-white">Active Complaints</div>
+          <button>
+                <IoReloadCircleOutline onClick={()=>{
+                  setRefresh(!refresh)
+                }} color="white" size={50}/>
+          </button>          
+        </div>              
+        </div>
+
+        <div className="mt-10 mb-20">
             {activeComplaints && activeComplaints.map((complaint) => {
                 return <CardAssign key={complaint.id} id={complaint.id} image={complaint.beforeImage} address={complaint.address} />
             })}

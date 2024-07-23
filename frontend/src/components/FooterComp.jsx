@@ -1,5 +1,5 @@
 export const FooterComp = () => {
-    return  <footer className="bg-slate-300 rounded-lg shadow mt-4 bottom-0">
+    return  <footer className="bg-slate-300 rounded-lg shadow mt-4 fixed bottom-0 w-full text-center">
         <div className="w-full  p-4 md:flex md:items-center md:justify-between">
           <span className="text-sm ml-10 text-black sm:text-center">© 2024 <a href="#" className="hover:underline mr-1">Waste Management System™.</a> All Rights Reserved.
         </span>
