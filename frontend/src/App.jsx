@@ -15,6 +15,10 @@ import Buttons from './Buttons'
 import { HeroParallax } from './components/HeroSection/HeroParallax'
 import { LoginUser } from './pages/LoginUser'
 import { CleanerLogin } from './pages/LoginCleaner'
+import OfficerPage from './pages/OfficerPage'
+import UsersCard from './components/cards/UsersCard'
+import ProfileCard from './components/cards/ProfileCard'
+import CardAssign from './components/cards/CardAssign'
 
 
 function App() {
@@ -37,7 +41,11 @@ function App() {
       </BrowserRouter>
       </Suspense>
       </RecoilRoot>
+      {/* <OfficerPage></OfficerPage> 
+      <ProfileCard />     */}
+      {/* <UsersCard /> */}
       <FooterComp></FooterComp>
+
 
     </>
   )
