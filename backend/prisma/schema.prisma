@@ -8,11 +8,13 @@ datasource db {
 }
 
 model User{
-  id              Int           @id @default(autoincrement())
-  username        String        @unique
-  email           String        @unique
-  password        String
-  complaints      Complaint[]
+  id                Int           @id @default(autoincrement())
+  username          String        @unique
+  email             String        @unique
+  password          String
+  firstName         String?
+  lastName          String?
+  complaints        Complaint[]
 }
 
 model Cleaner{
@@ -20,6 +22,8 @@ model Cleaner{
   username       String        @unique
   email          String        @unique
   password       String
+  firstName      String?
+  lastName       String?
   complaints     Complaint[]
 }
 
@@ -34,6 +38,7 @@ model Complaint{
   cleanerId      Int?    
   status         Status    
   createdOn      DateTime     @default(now())
+  finishedOn     DateTime?
 }
 
 model Address{
@@ -47,10 +52,20 @@ model Address{
   complaint      Complaint?    @relation(fields: [complaintId],references: [id])
 }
 
+model Officer {
+  id             Int          @id @default(autoincrement())
+  username       String       @unique
+  email          String       @unique
+  password       String 
+  firstName      String?
+  lastName       String?     
+}
+
 enum Status{
   Raised
   Processing
   underEvaluation
+  TimeLimitExceeded
   Rejected
   Completed
 }
